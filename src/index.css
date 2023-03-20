@@ -7,7 +7,7 @@
   }
   
   .container {
-    padding: 0px 50px;
+    padding: 0px 80px;
     margin: 1rem;
     text-align: center;
   }
@@ -15,11 +15,11 @@
   .nav {
     background-color: #425664;
     color: white;
-    font-size: 20px;
+    font-size: 21px;
     display: flex;
     justify-content: space-around;
     align-items: stretch;
-    gap: 1rem;
+    gap: 20rem;
     padding: 10px
   }
   
@@ -41,18 +41,26 @@
   }
   
   .nav li.active {
-    background-color: #555;
+    background-color: #9cacb5;
   }
   
   .nav li:hover {
-    background-color: #777;
+    background-color:#676d71;
   }
 
   .title{
-    color: #323D45;
+    color: #54646f;
     font-size: 30px;
     font-weight: 700;
-    padding-bottom: 30px;
-    
+    padding-bottom: 10px;
+  
   }
+  .create-element{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+ .addbtn{
+  background-color: rgb(19, 138, 19);
+ }
   

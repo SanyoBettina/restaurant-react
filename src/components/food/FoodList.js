@@ -1,8 +1,9 @@
 import React from "react";
 import { Space, Table } from "antd";
 import CrudDelete from "../CrudDelete";
+import FoodEdit from "./FoodEdit";
 
-function FoodList({ onDelete, foods }) {
+function FoodList({ onDelete, onEdit, foods }) {
   const columns = [
     {
       title: "Name",
@@ -24,6 +25,7 @@ function FoodList({ onDelete, foods }) {
       key: "action",
       render: (_, item) => (
         <Space size="middle">
+          <FoodEdit foodItem={item} onEdit={onEdit}></FoodEdit>
           <CrudDelete
             itemId={item.id}
             onDelete={onDelete}
@@ -36,7 +38,6 @@ function FoodList({ onDelete, foods }) {
 
   return (
     <div>
-      <div className="title">Food List</div>
       <Table columns={columns} dataSource={foods} rowKey="id" />
     </div>
   );

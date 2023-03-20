@@ -4,9 +4,8 @@ import { useState } from "react";
 import { restaurantConfig } from "../../config";
 import FoodForm from "./FoodForm";
 
-const FoodEdit = ({ foodItem, onEdit }) => {
-  const foodId = foodItem.id;
-  const API_URL = restaurantConfig.apiUrl + "foods/" + foodId;
+const FoodCreate = ({ onCreate }) => {
+  const API_URL = restaurantConfig.apiUrl + "foods";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -15,32 +14,28 @@ const FoodEdit = ({ foodItem, onEdit }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
-  const updateFood = async (foodItem) => {
+  const addFood = async (foodItem) => {
     try {
-      await axios.put(API_URL, foodItem);
-      foodItem.id = foodId;
-      message.success("Food has been changed successfully.");
-      onEdit(foodItem);
+      const { data } = await axios.post(API_URL, foodItem);
+      message.success("Food has been created successfully.");
+      onCreate(data);
     } catch (error) {
       message.error(error.message);
     }
   };
-
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Edit
+    <div className="create-element">
+      <Button className="addbtn" type="primary" onClick={showModal}>
+        Add
       </Button>
       <FoodForm
         open={isModalOpen}
         onCancel={handleCancel}
-        onCreate={updateFood}
-        foodItem={foodItem}
-        resetFields={false}
-        title="Edit food"
+        onCreate={addFood}
+        resetFields={true}
+        title="Add food"
       ></FoodForm>
-    </>
+    </div>
   );
 };
-export default FoodEdit;
+export default FoodCreate;

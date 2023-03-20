@@ -4,9 +4,8 @@ import { useState } from "react";
 import { restaurantConfig } from "../../config";
 import DrinkForm from "./DrinkForm";
 
-const DrinkEdit = ({ drinkItem, onEdit }) => {
-  const drinkId = drinkItem.id;
-  const API_URL = restaurantConfig.apiUrl + "drinks/" + drinkId;
+const DrinkCreate = ({ onCreate }) => {
+  const API_URL = restaurantConfig.apiUrl + "drinks";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -15,30 +14,28 @@ const DrinkEdit = ({ drinkItem, onEdit }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const updateDrink = async (drinkItem) => {
+  const addDrink = async (drinkItem) => {
     try {
-      await axios.put(API_URL, drinkItem);
-      drinkItem.id = drinkId;
-      message.success("Drink has been changed successfully.");
-      onEdit(drinkItem);
+      const { data } = await axios.post(API_URL, drinkItem);
+      message.success("Drink has been created successfully.");
+      onCreate(data);
     } catch (error) {
       message.error(error.message);
     }
   };
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Edit
+    <div className="create-element">
+      <Button className="addbtn" type="primary" onClick={showModal}>
+        Add
       </Button>
       <DrinkForm
         open={isModalOpen}
         onCancel={handleCancel}
-        onCreate={updateDrink}
-        drinkItem={drinkItem}
-        resetFields={false}
-        title="Edit drink"
+        onCreate={addDrink}
+        resetFields={true}
+        title="Add food"
       ></DrinkForm>
-    </>
+    </div>
   );
 };
-export default DrinkEdit;
+export default DrinkCreate;
