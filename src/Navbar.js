@@ -7,6 +7,7 @@ export default function Navbar() {
         Restaurant
       </Link>
       <ul>
+        <CustomLink to="/tables">Tables</CustomLink>
         <CustomLink to="/food">Foods</CustomLink>
         <CustomLink to="/drink">Drinks</CustomLink>
       </ul>
