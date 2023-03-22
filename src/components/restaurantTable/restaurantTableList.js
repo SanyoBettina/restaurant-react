@@ -1,44 +1,37 @@
-import { message, Select } from "antd";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { restaurantConfig } from "../../config";
+import { Space, Table } from "antd";
+import CrudDelete from "../CrudDelete";
 
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
-
-const RestaurantTableList = () => {
-  const API_URL = restaurantConfig.apiUrl + "tables";
-  const [options, setOptions] = useState([]);
-
-  useEffect(() => {
-    const getTables = async () => {
-      try {
-        const { data } = await axios.get(API_URL);
-        const opts = [];
-        for (let i = 0; i < data.length; i++) {
-          opts.push({
-            value: data[i].id,
-            label: "Table nr. " + data[i].id,
-          });
-        }
-        setOptions(opts);
-      } catch (error) {
-        message.error(error.message);
-      }
-    };
-    getTables();
-  }, [API_URL]);
+const RestaurantTableList = ({ tables, onDelete }) => {
+  const columns = [
+    {
+      title: "Table Number",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Number of Seats",
+      dataIndex: "nrOfSeats",
+      key: "nrOfSeats",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, item) => (
+        <Space size="middle">
+          <CrudDelete
+            itemId={item.id}
+            resource="tables"
+            onDelete={onDelete}
+          ></CrudDelete>
+        </Space>
+      ),
+    },
+  ];
 
   return (
-    <Select
-      style={{
-        width: "100%",
-      }}
-      placeholder="Select a table"
-      onChange={handleChange}
-      options={options}
-    />
+    <div>
+      <Table columns={columns} dataSource={tables} rowKey="id" />
+    </div>
   );
 };
 export default RestaurantTableList;

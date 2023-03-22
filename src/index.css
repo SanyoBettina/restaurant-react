@@ -63,4 +63,8 @@
  .addbtn{
   background-color: rgb(19, 138, 19);
  }
-  
+
+ .flex {
+  display: flex;
+  justify-content: space-evenly;
+ }
