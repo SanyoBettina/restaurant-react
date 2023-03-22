@@ -32,7 +32,11 @@ export default function TableAddModal({ open, title, onCancel, onCreate }) {
               </Form.Item>
             </div>
             <div>
-              <Form.Item label="Radio" name="nrOfSeats" initialValue={2}>
+              <Form.Item
+                label="Number of seats:"
+                name="nrOfSeats"
+                initialValue={2}
+              >
                 <Radio.Group>
                   <Space direction="vertical">
                     <Radio value={2}>2</Radio>

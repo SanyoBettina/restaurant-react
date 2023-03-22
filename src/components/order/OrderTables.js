@@ -3,11 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { restaurantConfig } from "../../config";
 
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
-
-const OrderList = () => {
+const OrderTables = ({ handleChange }) => {
   const API_URL = restaurantConfig.apiUrl + "tables";
   const [options, setOptions] = useState([]);
 
@@ -41,4 +37,4 @@ const OrderList = () => {
     />
   );
 };
-export default OrderList;
+export default OrderTables;
