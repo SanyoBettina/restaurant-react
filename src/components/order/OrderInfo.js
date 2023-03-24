@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import OrderItemCreate from "../orderItems/OrderItemCreate";
 import OrderItemList from "../orderItems/OrderItemList";
 
-export default function OrderInfo({ order, orderItems, closeOrder }) {
+export default function OrderInfo({ order, closeOrder }) {
   const createdDate = new Date(order.createdAt).toLocaleString();
-  const [orderItem, setOrderItem] = useState(orderItems);
+  const [orderItem, setOrderItem] = useState(order.orderItems);
 
   useEffect(() => {
-    setOrderItem(orderItems);
-  }, [orderItems]);
+    setOrderItem(order.orderItems);
+  }, [order.orderItems]);
 
   const onOrderItemCreate = (item) => {
     setOrderItem([...orderItem, item]);
@@ -20,14 +20,21 @@ export default function OrderInfo({ order, orderItems, closeOrder }) {
     setOrderItem(orderItemList);
   };
 
+  const total = orderItem.reduce(
+    (accumulator, currentItem) =>
+      accumulator + currentItem.quantity * currentItem.unitPrice,
+    0
+  );
+
   return (
     <div>
-      <ul>
-        <li>{order.id}</li>
-        <li>{createdDate}</li>
-        <li>{!order.paid ? "Active" : null}</li>
-      </ul>
-
+      <div>
+        <div className="orderInfo">
+          <span>Order number: {order.id}</span>
+          <span>Status: {!order.paid ? "Active" : null}</span>
+        </div>
+        <div id="date">Created at: {createdDate}</div>
+      </div>
       <div>
         <OrderItemCreate
           onCreate={onOrderItemCreate}
@@ -37,7 +44,10 @@ export default function OrderInfo({ order, orderItems, closeOrder }) {
           orderItems={orderItem}
           onDelete={onOrderItemDelete}
         ></OrderItemList>
-        <Button onClick={closeOrder}>Close order</Button>
+        <div className="total">Total: {total} RON</div>
+        <Button size="large" className="orderCloseBtn" onClick={closeOrder}>
+          Close order
+        </Button>
       </div>
     </div>
   );

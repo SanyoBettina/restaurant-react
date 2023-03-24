@@ -19,7 +19,6 @@ const TableCreate = ({ onCreate }) => {
       const { data } = await axios.post(API_URL, tableItem);
       message.success("Tables has been created successfully.");
       onCreate(data);
-      console.log(data);
     } catch (error) {
       message.error(error.message);
     }

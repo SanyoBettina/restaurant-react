@@ -3,6 +3,7 @@
   }
   
   body {
+   background-color: rgb(250, 249, 247);
     margin: 0;
   }
   
@@ -13,7 +14,7 @@
   }
   
   .nav {
-    background-color: #425664;
+    background-color: #748DA6;
     color: white;
     font-size: 21px;
     display: flex;
@@ -68,3 +69,28 @@
   display: flex;
   justify-content: space-evenly;
  }
+
+ .orderCloseBtn{
+  background-color:rgb(255, 191, 0);
+  transition-duration: 0.4s;
+ }
+ .orderCloseBtn:hover{
+  background-color: rgb(255, 127, 80);
+  color: #676d71;
+ }
+.orderInfo{
+  display: flex;
+  justify-content: space-around;
+  font-size: 25px;
+  background-color: #cce3c6;
+  border-end-end-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+#date{
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.total{
+  display: flex;
+}

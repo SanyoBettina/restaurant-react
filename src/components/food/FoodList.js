@@ -14,11 +14,13 @@ function FoodList({ onDelete, onEdit, foods }) {
       title: "Price",
       dataIndex: "price",
       key: "price",
+      render: (_, item) => item.price + " RON",
     },
     {
       title: "Weight",
       dataIndex: "weight",
       key: "weight",
+      render: (_, item) => item.weight + " g",
     },
     {
       title: "Action",

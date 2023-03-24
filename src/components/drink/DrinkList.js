@@ -14,6 +14,7 @@ function DrinkList({ onDelete, drinks, onEdit }) {
       title: "Price",
       dataIndex: "price",
       key: "price",
+      render: (_, item) => item.price + " RON",
     },
     {
       title: "Drink Type",
@@ -24,6 +25,7 @@ function DrinkList({ onDelete, drinks, onEdit }) {
       title: "Size",
       dataIndex: "size",
       key: "size",
+      render: (_, item) => item.size + " ml",
     },
     {
       title: "Action",

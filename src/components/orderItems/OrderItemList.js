@@ -3,13 +3,24 @@ import { Space, Table } from "antd";
 import CrudDelete from "../CrudDelete";
 
 export default function OrderItemList({ orderItems, onDelete }) {
-  console.log(orderItems);
   const columns = [
     {
       title: "Type",
       dataIndex: ["menuItem", "type"],
       key: "type",
     },
+    {
+      title: "Name",
+      dataIndex: ["menuItem", "name"],
+      key: "name",
+    },
+    {
+      title: "Price",
+      dataIndex: "unitPrice",
+      key: "quantity",
+      render: (_, item) => item.unitPrice + " RON",
+    },
+
     {
       title: "Quantity",
       dataIndex: "quantity",

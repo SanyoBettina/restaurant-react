@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import RestaurantTableList from "../components/restaurantTable/RestaurantTableList";
 import TableCreate from "../components/restaurantTable/TableCreate";
 import { restaurantConfig } from "../config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTable } from "@fortawesome/free-solid-svg-icons";
 
 export default function RestaurantTablesPage() {
   const API_URL = restaurantConfig.apiUrl + "tables";
@@ -30,7 +32,9 @@ export default function RestaurantTablesPage() {
   }, [API_URL]);
   return (
     <div>
-      <div className="title">Tables</div>
+      <div className="title">
+        <FontAwesomeIcon icon={faTable} /> Tables
+      </div>
       <TableCreate onCreate={onTableCreate}></TableCreate>
       <RestaurantTableList
         tables={table}

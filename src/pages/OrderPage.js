@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClipboard } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { restaurantConfig } from "../config";
 import { useState } from "react";
 import { Button, message } from "antd";
@@ -49,13 +49,12 @@ export default function OrederPage() {
         <FontAwesomeIcon icon={faClipboard} /> Orders
         <OrderTables handleChange={getOrders}></OrderTables>
         {order ? (
-          <OrderInfo
-            order={order}
-            orderItems={order.orderItems}
-            closeOrder={closeOrder}
-          ></OrderInfo>
+          <OrderInfo order={order} closeOrder={closeOrder}></OrderInfo>
         ) : table ? (
-          <Button onClick={createOrder}>Add order</Button>
+          <Button onClick={createOrder}>
+            <FontAwesomeIcon icon={faPlus} />
+            Add order
+          </Button>
         ) : null}
       </div>
     </div>
